@@ -95,28 +95,28 @@ columns
 | props | [Table-column Attributes](https://element.eleme.cn/#/zh-CN/component/table#table-column-attributes) | `object` |  | |
 
 
-## JcBaseFrom
+## JcBaseForm
 
 ### 代码实例
 <code-box title="注意事项" description="">
-  <Jc-base-from-demo />
+  <Jc-base-form-demo />
 </code-box>
 
 ```vue
 <template>
-  <JcBaseFrom ref="baseForm" :items="items" :object="object">
+  <JcBaseForm ref="baseForm" :items="items" :object="object">
     <el-button @click="submitForm">立即创建</el-button>
     <el-button @click="resetForm">重置</el-button>
-  </JcBaseFrom>
+  </JcBaseForm>
 </template>
 
 <script>
-import JcBaseFrom from "../src/JcBaseFrom";
+import JcBaseForm from "../src/JcBaseForm";
 
 export default {
-  name: "JcBaseFromDemo",
+  name: "JcBaseFormDemo",
   components: {
-    JcBaseFrom
+    JcBaseForm
   },
   data() {
     return {
@@ -219,7 +219,7 @@ export default {
 </script>
 ```
 
-### JcBaseFrom参数
+### JcBaseForm 参数
 | 参数    | 说明 | 类型   | 可选值 | 默认值  |
 | ------- | ---- | ------ | ------ | ------- |
 | items | 信息 | `array[item]` |   | `[]` |

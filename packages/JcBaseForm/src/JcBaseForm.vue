@@ -161,7 +161,7 @@ Vue.use(TimeSelect);
 Vue.use(TimePicker);
 
 export default {
-  name: "JcBaseFrom",
+  name: "JcBaseForm",
   props: {
     props: {
       default: () => {

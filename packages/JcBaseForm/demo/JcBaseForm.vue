@@ -1,24 +1,23 @@
 <template>
-  <JcBaseFrom ref="baseForm" :items="items" :object="object">
+  <JcBaseForm ref="baseForm" :items="items" :object="object">
     <el-button @click="submitForm">立即创建</el-button>
     <el-button @click="resetForm">重置</el-button>
-  </JcBaseFrom>
+  </JcBaseForm>
 </template>
 
 <script>
-import JcBaseFrom from "../src/JcBaseFrom";
+import JcBaseForm from "../src/JcBaseForm";
 
 export default {
-  name: "JcBaseFromDemo",
+  name: "JcBaseFormDemo",
   components: {
-    JcBaseFrom
+    JcBaseForm
   },
   data() {
     return {
       object: {
         activeName: "电器特惠活动",
         activeArea: "2",
-        activeDate: "",
         timelyDelivery: false,
         natureActivities: ["1"],
         specialResources: "1"

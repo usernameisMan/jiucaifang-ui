@@ -1,14 +1,14 @@
 import locale from './utils/locale';
 
-import HelloWorld from "../packages/HelloWorld/src";
-import JcBaseTable from "../packages/JcBaseTable/src";
-import JcBaseFrom from "../packages/JcBaseFrom/src";
-
 // import HelloWorld from "../packages/HelloWorld/src";
-// import JcBaseTable from "../packages/JcBaseTable/demo";
-// import JcBaseFrom from "../packages/JcBaseFrom/demo";
+// import JcBaseTable from "../packages/JcBaseTable/src";
+// import JcBaseForm from "../packages/JcBaseForm/src";
 
-const components = [HelloWorld, JcBaseTable , JcBaseFrom];
+import HelloWorld from "../packages/HelloWorld/src";
+import JcBaseTable from "../packages/JcBaseTable/demo";
+import JcBaseForm from "../packages/JcBaseForm/demo";
+
+const components = [HelloWorld, JcBaseTable , JcBaseForm];
 
 const version = "0.0.1";
 
@@ -27,4 +27,4 @@ if (typeof window !== "undefined" && window.Vue) {
   install(window.Vue);
 }
 
-export default { version, install, HelloWorld, JcBaseTable, JcBaseFrom};
+export default { version, install, HelloWorld, JcBaseTable, JcBaseForm};
