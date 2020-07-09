@@ -10,7 +10,10 @@
     "name": "",
     "email": ""
   },
-  "repository": "/jiucaifang",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/usernameisMan/jiucaifang-ui"
+  },
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
@@ -92,7 +95,5 @@
       "<rootDir>/node_modules/jest-serializer-vue"
     ]
   },
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }
