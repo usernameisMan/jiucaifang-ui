@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelloWorld.test.js has the expected html structure 1`] = `
+<div>
+    <p class="demo-box">
+        This is 你好 World1
+    </p>
+</div>
+`;
