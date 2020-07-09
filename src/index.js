@@ -1,12 +1,12 @@
 import locale from './utils/locale';
 
-// import HelloWorld from "../packages/HelloWorld/src";
-// import JcBaseTable from "../packages/JcBaseTable/src";
-// import JcBaseForm from "../packages/JcBaseForm/src";
-
 import HelloWorld from "../packages/HelloWorld/src";
-import JcBaseTable from "../packages/JcBaseTable/demo";
-import JcBaseForm from "../packages/JcBaseForm/demo";
+import JcBaseTable from "../packages/JcBaseTable/src";
+import JcBaseForm from "../packages/JcBaseForm/src";
+
+// import HelloWorld from "../packages/HelloWorld/src";
+// import JcBaseTable from "../packages/JcBaseTable/demo";
+// import JcBaseForm from "../packages/JcBaseForm/demo";
 
 const components = [HelloWorld, JcBaseTable , JcBaseForm];
 
