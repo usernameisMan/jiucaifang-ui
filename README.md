@@ -1,5 +1,4 @@
-# jiucaifang(韭菜坊)
-开发这个库的目的是缩短工作时间，把更多的时间留给生活、学习而不是工作。   
+# jiucaifang
 对 element-ui 的二次封装，减少原 element-ui 使用时候代码量(约50%)，使项目具备较好的维护性。
 # 入门文档
 
@@ -20,6 +19,82 @@ Vue.use(jiucaifang);
 ```
 
 # 组件文档
+
+## JcFormDialog
+
+### 代码实例
+```vue
+<template>
+  <el-button @click="show">显示JcFormDialog</el-button>
+</template>
+
+<script>
+
+export default {
+  name: "JcFormDialogDemo",
+  methods: {
+    show() {
+      this.$JcFormDialog.show({
+        title: "测试弹框",
+        object: {
+          activeName: "促销活动",
+          activeDescription: ""
+        },
+        submitText: '清理活动',
+        items: testFormItems,
+        submit: value => {
+          if (value) {
+            console.log("value", value);
+            this.$JcFormDialog.loading()
+
+            setTimeout(()=> {
+              this.$JcFormDialog.hidden()
+              this.$JcFormDialog.unloading()
+            }, 2000)
+
+          } else {
+            console.log("value", value);
+          }
+        }
+      });
+    }
+  }
+};
+
+const testFormItems = [
+  {
+    type: "input",
+    label: "活动名称",
+    dataIndex: "activeName",
+    rules: [{ required: true, message: "请输入活动名称" }]
+  },
+  {
+    type: "textarea",
+    label: "活动描述",
+    dataIndex: "activeDescription",
+    rules: [{ required: true, message: "请输入活动描述" }]
+  }
+];
+</script>
+```
+$JcFormDialog.show({ 以下参数 }) 
+| 参数    | 说明 | 类型   | 可选值 | 默认值  |
+| ------- | ---- | ------ | ------ | ------- |
+| title | 弹框标题 | `string` |   | `` |
+| submitText | 提交按钮显示内容 | `string` |  | `确定` |
+| resetText | 重置按钮显示内容 | `string` |   | `重置` |
+| cancelText | 取消按钮显示内容 | `string` |   | `取消` |
+| submit | 提交回调 如果传入就会显示按钮 | `(value = {} | false) =>` |   | `` |
+| reset | 重置回调 如果传入就会显示按钮 | `() = >` |   | `` |
+| cancel | 取消回调 如果传入就会显示按钮 | `() = >` |   | `` |
+| items | baseForm 的 items | `array[item]` |   | `` |
+| object | baseForm 的 object  | `{}` |   | `` |
+
+
+$JcFormDialog.hidden()    隐藏弹框     
+$JcFormDialog.loading()   弹框按钮加载状态    
+$JcFormDialog.unloading() 取消弹框按钮加载状态    
+
 
 ## JcBaseTable
 
