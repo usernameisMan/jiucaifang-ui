@@ -1,8 +1,15 @@
 <template>
-  <JcBaseForm ref="baseForm" :items="items" :object="object">
-    <el-button @click="submitForm">立即创建</el-button>
-    <el-button @click="resetForm">重置</el-button>
-  </JcBaseForm>
+  <div>
+    <JcBaseForm ref="baseForm" :items="items" :object="object">
+      <el-button type="primary" @click="submitForm">立即创建</el-button>
+      <el-button @click="resetForm">重置</el-button>
+    </JcBaseForm>
+
+    <JcBaseForm ref="baseForm" :props="{inline:true, 'label-width': '80px'}" :items="searchItems" :object="searchObject" >
+      <el-button type="primary" @click="submitForm">搜索</el-button>
+      <el-button @click="resetForm">重置</el-button>
+    </JcBaseForm>
+  </div>
 </template>
 
 <script>
@@ -15,6 +22,37 @@ export default {
   },
   data() {
     return {
+      inline: false,
+      searchObject: {
+        activeName: "电器特惠活动",
+        activeArea: "2",
+      },
+      searchItems: [
+        {
+          type: "input",
+          label: "活动名称",
+          dataIndex: "activeName",
+          rules: [{ required: true, message: "请输入活动名称" }]
+        },
+        {
+          type: "select",
+          label: "活动区域",
+          dataIndex: "activeArea",
+          props: {
+            style: "width: 100%"
+          },
+          options: [
+            {
+              label: "区域一",
+              value: "1"
+            },
+            {
+              label: "区域二",
+              value: "2"
+            }
+          ]
+        }
+      ],
       object: {
         activeName: "电器特惠活动",
         activeArea: "2",
@@ -107,6 +145,9 @@ export default {
     },
     resetForm() {
       const [from] = this.$refs.baseForm.$children;
+    },
+    line() {
+      this.inline = !this.inline
     }
   }
 };

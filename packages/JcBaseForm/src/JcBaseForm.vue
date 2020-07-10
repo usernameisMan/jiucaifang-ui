@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="object" :rules="getRules" label-width="120px" v-bind="{...props}">
+  <el-form :model="object" :rules="getRules" v-bind="{...props}">
     <el-form-item
       v-for="(item, index) in items"
       :key="index"
@@ -165,7 +165,10 @@ export default {
   props: {
     props: {
       default: () => {
-        style: "width: 100%";
+        return {
+          labelWidth: "100px",
+          style: "width: 100%",
+        }
       }
     },
     object: {
