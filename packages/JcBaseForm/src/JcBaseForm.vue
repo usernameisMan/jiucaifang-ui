@@ -11,6 +11,7 @@
         v-bind="{...item.props}"
         v-if="item.type == 'input'"
         v-model="object[item.dataIndex]"
+        :disabled="item.disabled"
         clearable
       />
       <el-input
@@ -19,6 +20,7 @@
         v-if="item.type == 'textarea'"
         v-model="object[item.dataIndex]"
         type="textarea"
+        :disabled="item.disabled"
         clearable
       />
       <el-input-number
@@ -27,12 +29,14 @@
         v-if="item.type == 'inputNumber'"
         v-model="object[item.dataIndex]"
         v-bind="{...item.props}"
+        :disabled="item.disabled"
       />
       <el-select
         :placeholder="`请输入${item.label}`"
         v-if="item.type == 'select'"
         v-model="object[item.dataIndex]"
         v-bind="{...item.props}"
+        :disabled="item.disabled"
       >
         <el-option
           v-for="option in item.options"
@@ -46,11 +50,13 @@
         v-model="object[item.dataIndex]"
         v-bind="{...item.props}"
         inactive-color="#ff4949"
-      ></el-switch>
+        :disabled="item.disabled"
+      />
       <el-radio-group
         v-if="item.type == 'radio'"
         v-model="object[item.dataIndex]"
         v-bind="{...item.props}"
+        :disabled="item.disabled"
       >
         <el-radio
           v-for="option in item.options"
@@ -62,6 +68,7 @@
         v-if="item.type == 'checkbox'"
         v-model="object[item.dataIndex]"
         v-bind="{...item.props}"
+        :disabled="item.disabled"
       >
         <el-checkbox
           v-for="option in item.options"
@@ -76,6 +83,7 @@
         v-if="item.type == 'time'"
         v-model="object[item.dataIndex]"
         v-bind="{...item.props}"
+        :disabled="item.disabled"
       />
       <el-time-picker
         is-range
@@ -86,6 +94,7 @@
         v-if="item.type == 'timePicker'"
         v-model="object[item.dataIndex]"
         v-bind="{...item.props}"
+        :disabled="item.disabled"
       />
       <el-date-picker
         v-if="item.type == 'date'"
@@ -93,6 +102,7 @@
         v-bind="{...item.props}"
         type="date"
         placeholder="选择日期"
+        :disabled="item.disabled"
       />
       <el-date-picker
         range-separator="至"
@@ -102,6 +112,7 @@
         v-model="object[item.dataIndex]"
         v-bind="{...item.props}"
         type="daterange"
+        :disabled="item.disabled"
       />
       <el-date-picker
         type="datetime"
@@ -109,6 +120,7 @@
         v-if="item.type == 'datetime'"
         v-model="object[item.dataIndex]"
         v-bind="{...item.props}"
+        :disabled="item.disabled"
       />
       <el-date-picker
         type="datetimerange"
@@ -118,7 +130,12 @@
         v-if="item.type == 'datetimerange'"
         v-model="object[item.dataIndex]"
         v-bind="{...item.props}"
+        :disabled="item.disabled"
       />
+      <el-button
+        v-if="typeof item.operation == 'object'"
+        @click="item.operation.event(object)"
+      >{{item.operation.label}}</el-button>
     </el-form-item>
     <el-form-item>
       <slot></slot>
@@ -142,11 +159,11 @@ import {
   TimeSelect,
   TimePicker,
   Checkbox,
-  CheckboxGroup,
+  CheckboxGroup
 } from "element-ui";
 
-Vue.use(Checkbox)
-Vue.use(Switch)
+Vue.use(Checkbox);
+Vue.use(Switch);
 Vue.use(Form);
 Vue.use(FormItem);
 Vue.use(Input);
@@ -166,9 +183,8 @@ export default {
     props: {
       default: () => {
         return {
-          labelWidth: "100px",
-          style: "width: 100%",
-        }
+          labelWidth: "100px"
+        };
       }
     },
     object: {
@@ -180,16 +196,16 @@ export default {
   },
   computed: {
     getRules() {
-      const rules = this.items.reduce((accumulator, currentValue)=> {
-        const { rules = '' , dataIndex = ''} = currentValue
-        if(rules) {
-          accumulator[dataIndex] = rules
-          return accumulator
+      const rules = this.items.reduce((accumulator, currentValue) => {
+        const { rules = "", dataIndex = "" } = currentValue;
+        if (rules) {
+          accumulator[dataIndex] = rules;
+          return accumulator;
         }
-        return accumulator
-      } ,{})
+        return accumulator;
+      }, {});
 
-      return rules
+      return rules;
     }
   },
   methods: {}

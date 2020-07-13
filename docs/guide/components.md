@@ -137,7 +137,8 @@ export default {
           type: "input",
           label: "活动名称",
           dataIndex: "activeName",
-          rules: [{ required: true, message: "请输入活动名称" }]
+          rules: [{ required: true, message: "请输入活动名称" }],
+          disabled: true,
         },
         {
           type: "select",
@@ -170,7 +171,14 @@ export default {
           type: "input",
           label: "活动名称",
           dataIndex: "activeName",
-          rules: [{ required: true, message: "请输入活动名称" }]
+          rules: [{ required: true, message: "请输入活动名称" }],
+          operation: {
+            label: '复制',
+            event: this.copy
+          },
+          props: {
+            style: "width: 200px"
+          }
         },
         {
           type: "select",
@@ -237,6 +245,9 @@ export default {
     };
   },
   methods: {
+    copy (value) {
+      console.log(value.activeName)
+    },
     submitForm() {
       const [from] = this.$refs.baseForm.$children;
       from.validate(valid => {
@@ -273,6 +284,7 @@ item (参见demo)
 | dataIndex | 对象字段名 | `string` |  | |
 | options | 用于 `select` `radio`  `checkbox`| `string` |  | |
 | props | [From components Attributes](https://element.eleme.cn/#/zh-CN/component/) | `object` |  | |
+| operation | 配置行的按钮操作 | `{label, event(object)}` |  | |
 
 
 ## JcFormDialog

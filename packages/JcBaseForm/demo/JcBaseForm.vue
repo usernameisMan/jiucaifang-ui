@@ -32,7 +32,8 @@ export default {
           type: "input",
           label: "活动名称",
           dataIndex: "activeName",
-          rules: [{ required: true, message: "请输入活动名称" }]
+          rules: [{ required: true, message: "请输入活动名称" }],
+          disabled: true,
         },
         {
           type: "select",
@@ -65,7 +66,14 @@ export default {
           type: "input",
           label: "活动名称",
           dataIndex: "activeName",
-          rules: [{ required: true, message: "请输入活动名称" }]
+          rules: [{ required: true, message: "请输入活动名称" }],
+          operation: {
+            label: '复制',
+            event: this.copy
+          },
+          props: {
+            style: "width: 200px"
+          }
         },
         {
           type: "select",
@@ -132,6 +140,9 @@ export default {
     };
   },
   methods: {
+    copy (value) {
+      console.log(value.activeName)
+    },
     submitForm() {
       const [from] = this.$refs.baseForm.$children;
       from.validate(valid => {
