@@ -9,7 +9,7 @@ export default {
   methods: {
     show() {
       this.$JcFormDialog.show({
-        title: "测试弹框",
+        title: "测试弹框1",
         object: {
           activeName: "促销活动",
           activeDescription: ""
