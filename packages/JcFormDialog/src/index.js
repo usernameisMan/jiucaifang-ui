@@ -9,7 +9,7 @@ document.body.appendChild(instance.$el)
 JcFormDialog.show = function (data) {
 
   Vue.nextTick(() => {
-    const { title = '', submitText = '确定', resetText = '重置', cancelText = '取消', submit = null, reset = null, cancel = null, items = [], object = {} } = data
+    const { title = '', submitText = '确定', resetText = '重置', cancelText = '取消', submit = null, reset = null, cancel = null, items = [], object = {}, props={} } = data
     instance.visible = true
     instance.title = title
     instance.submitText = submitText
@@ -21,6 +21,7 @@ JcFormDialog.show = function (data) {
     instance.items = items
     instance.object = object
     instance.loading = false
+    instance.props = props
   })
 }
 

@@ -14,6 +14,9 @@ export default {
           activeName: "促销活动",
           activeDescription: ""
         },
+        props: {
+          width: "450px"
+        },
         submitText: '清理活动',
         items: testFormItems,
         submit: value => {

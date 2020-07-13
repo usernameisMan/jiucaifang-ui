@@ -5,7 +5,7 @@ import JcBaseTable from "../packages/JcBaseTable/src";
 import JcBaseForm from "../packages/JcBaseForm/src";
 import JcFormDialog from "../packages/JcFormDialog/src"
 
-const components = [HelloWorld, JcBaseTable, JcBaseForm];
+// const components = [HelloWorld, JcBaseTable, JcBaseForm];
 
 // import HelloWorld from "../packages/HelloWorld/src";
 // import JcBaseTable from "../packages/JcBaseTable/demo";
@@ -16,7 +16,7 @@ const components = [HelloWorld, JcBaseTable, JcBaseForm];
 
 // const components = [HelloWorld, JcBaseTable, JcBaseForm, JcFormDialogDemo];
 
-const version = "0.1.4";
+const version = "0.1.41";
 
 const install = function (Vue, opts = {}) {
   // 判断是否安装
