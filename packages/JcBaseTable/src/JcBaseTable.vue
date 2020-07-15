@@ -1,7 +1,7 @@
 <template>
   <el-table
     :data="dataSource"
-    v-bind="{...tableProps}"
+    v-bind="{...props}"
     @selection-change="(val)=> $emit('selection-change', val)"
   >
     <el-table-column v-if="$listeners['selection-change']" type="selection" width="55" />
@@ -36,7 +36,7 @@ export default {
     dataSource: {
       default: () => []
     },
-    tableProps: {
+    props: {
       default: () => {
         style: "width: 100%";
       }
