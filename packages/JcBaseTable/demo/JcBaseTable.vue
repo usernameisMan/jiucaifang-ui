@@ -1,5 +1,5 @@
 <template>
-  <JcBaseTable :dataSource="dataSource" :columns="columns" @selection-change="handleSelectionChange">
+  <JcBaseTable ref="baseTable" :dataSource="dataSource" :columns="columns" @selection-change="handleSelectionChange">
     <template v-slot:operation="{scope}">
       <el-button size="mini" @click="handleEdit(scope)">编辑</el-button>
     </template>
@@ -84,6 +84,12 @@ export default {
     },
     handleSelectionChange (val) {
       console.log(val)
+    },
+    getBaseTableRef (item){
+      // 暂时通过这种方式获取
+      const [baseTable] = this.$refs.baseTable.$children;
+      // 调用 element-ui table 的勾选
+      baseTable.toggleRowSelection(item, true);
     }
   }
 };
