@@ -100,7 +100,7 @@ $JcFormDialog.unloading() 取消弹框按钮加载状态
 
 ```vue
 <template>
-  <JcBaseTable :dataSource="dataSource" :columns="columns">
+  <JcBaseTable ref="baseTable" :dataSource="dataSource" :columns="columns" @selection-change="handleSelectionChange">
     <template v-slot:operation="{scope}">
       <el-button size="mini" @click="handleEdit(scope)">编辑</el-button>
     </template>
@@ -131,12 +131,16 @@ export default {
         {
           date: "1996",
           name: "lenlee",
-          address: "成都"
+          address: "成都",
+          status: 1,
+          sex: 0
         },
         {
           date: "1996",
           name: "lenlee",
-          address: "成都"
+          address: "成都",
+          status: 0,
+          sex: 1
         }
       ],
       columns: [
@@ -152,8 +156,18 @@ export default {
           dataIndex: "name"
         },
         {
+          label: "性别",
+          dataIndex: "sex",
+          render: row => row.sex ? '男' : '女'
+        },
+        {
+          label: "状态",
+          dataIndex: "status",
+          render: row => row.status ? `<img src="${this.getIMG(row.status)}"/>` : `<i class="el-icon-error"/>`
+        },
+        {
           label: "地址",
-          dataIndex: "address"
+          dataIndex: "address",
         },
         {
           label: "操作",
@@ -165,11 +179,22 @@ export default {
   methods: {
     handleEdit(scope) {
       console.log(scope);
+    },
+    getIMG(val) {
+      return 'https://www.easyicon.net/api/resizeApi.php?id=1170860&size=24'
+    },
+    handleSelectionChange (val) {
+      console.log(val)
+    },
+    getBaseTableRef (item){
+      // 暂时通过这种方式获取
+      const [baseTable] = this.$refs.baseTable.$children;
+      // 调用 element-ui table 的勾选
+      baseTable.toggleRowSelection(item, true);
     }
   }
 };
 </script>
-
 ```
 
 ### JcBaseTable参数
