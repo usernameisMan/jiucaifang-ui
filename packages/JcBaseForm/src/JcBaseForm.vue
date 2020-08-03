@@ -37,6 +37,7 @@
         v-model="object[item.dataIndex]"
         v-bind="{...item.props}"
         :disabled="item.disabled"
+        clearable
       >
         <el-option
           v-for="option in item.options"
