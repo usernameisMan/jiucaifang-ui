@@ -16,7 +16,7 @@ const components = [HelloWorld, JcBaseTable, JcBaseForm];
 
 // const components = [HelloWorld, JcBaseTable, JcBaseForm, JcFormDialogDemo];
 
-const version = "0.1.6";
+const version = "0.1.7";
 
 const install = function (Vue, opts = {}) {
   // 判断是否安装
