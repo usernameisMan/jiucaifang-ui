@@ -2,10 +2,10 @@
 对 element-ui 的二次封装，减少原 element-ui 使用时候代码量(约50%)，使项目具备较好的维护性。     
 
 
->  0.1.7    
->   1.修复表单无法清除 select 框的问题    
->   2.修复弹框表单无法隐藏按钮的问题    
->   3.更新文档中 style 的使用
+>  0.2.1   
+>   1.修复无法禁用 clearable 的问题，修复选择器提示问题
+>   2.加入 form.type 'container' 支持一个 el-form-item 里面使用多个 el 组件和 html      
+>   3.加入 form.span    
 
 
 # 入门文档
@@ -79,6 +79,9 @@ const testFormItems = [
   {
     type: "textarea",
     label: "活动描述",
+    on: {
+      change: (e)=> { console.log(e) }
+    }
     dataIndex: "activeDescription",
     rules: [{ required: true, message: "请输入活动描述" }]
   }
@@ -251,6 +254,8 @@ export default {
       searchObject: {
         activeName: "电器特惠活动",
         activeArea: "2",
+        container: "",
+        percentage: "",
       },
       searchItems: [
         {
@@ -259,6 +264,52 @@ export default {
           dataIndex: "activeName",
           rules: [{ required: true, message: "请输入活动名称" }],
           disabled: true,
+        },
+        {
+          type: "container",
+          label: "完整率",
+          dataIndex: "percentage", //指定检测内部某个 dataIndex
+          rules: [{ required: true, message: "请输入完整率" }],
+          container: [
+            {
+              type: "select",
+              label: "",
+              dataIndex: "symbol",
+              span: 3,
+              props: {
+                clearable: false,
+              },
+              options: [
+                {
+                  label: "=",
+                  value: "=",
+                },
+                {
+                  label: ">",
+                  value: ">",
+                },
+                {
+                  label: "<",
+                  value: "<",
+                },
+                {
+                  label: "≠",
+                  value: "≠",
+                },
+              ],
+            },
+            {
+              type: "html",
+              span: 2,
+              render: "<div style='text-align:center'>-</div>",
+            },
+            {
+              type: "input",
+              label: "",
+              dataIndex: "percentage",
+              span: 11,
+            },
+          ],
         },
         {
           type: "select",

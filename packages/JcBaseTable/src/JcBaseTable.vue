@@ -37,9 +37,7 @@ export default {
       default: () => []
     },
     props: {
-      default: () => {
-        style: "width: 100%";
-      }
+      default: () => {}
     },
   },
   methods: {}

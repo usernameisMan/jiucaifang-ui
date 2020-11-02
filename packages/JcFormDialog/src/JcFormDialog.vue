@@ -1,6 +1,6 @@
 <template>
   <el-dialog :title="title" :visible.sync="visible" @close="close" v-bind="{...props}">
-    <JcBaseForm ref="jcFormDialog" :items="items" :object="object">
+    <JcBaseForm ref="jcFormDialog" :items="items" :object="object" v-bind="{...formProps}">
       <el-button  type="primary" :loading="loading" v-if="submit" @click="submitForm">{{submitText}}</el-button>
       <el-button :loading="loading" v-if="reset" @click="resetForm">{{resetText}}</el-button>
       <el-button :loading="loading" v-if="cancel" @click="cancelForm">{{cancelText}}</el-button>
@@ -32,6 +32,7 @@ export default {
     "object",
     "loading",
     "props",
+    "formProps"
   ],
   methods: {
     submitForm() {

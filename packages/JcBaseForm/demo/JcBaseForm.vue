@@ -5,8 +5,13 @@
       <el-button @click="resetForm">重置</el-button>
     </JcBaseForm>
 
-    <JcBaseForm ref="baseForm" :props="{inline:true, 'label-width': '80px'}" :items="searchItems" :object="searchObject" >
-      <el-button type="primary" @click="submitForm">搜索</el-button>
+    <JcBaseForm
+      ref="baseForm2"
+      :props="{inline:true, 'label-width': '80px'}"
+      :items="searchItems"
+      :object="searchObject"
+    >
+      <el-button type="primary" @click="submitForm2">搜索</el-button>
       <el-button @click="resetForm">重置</el-button>
     </JcBaseForm>
   </div>
@@ -18,7 +23,7 @@ import JcBaseForm from "../src/JcBaseForm";
 export default {
   name: "JcBaseFormDemo",
   components: {
-    JcBaseForm
+    JcBaseForm,
   },
   data() {
     return {
@@ -26,6 +31,8 @@ export default {
       searchObject: {
         activeName: "电器特惠活动",
         activeArea: "2",
+        percentage: "",
+        symbol: ">",
       },
       searchItems: [
         {
@@ -36,30 +43,76 @@ export default {
           disabled: true,
         },
         {
+          type: "container",
+          label: "完整率",
+          dataIndex: "percentage", //指定检测内部某个 dataIndex
+          rules: [{ required: true, message: "请输入完整率" }],
+          container: [
+            {
+              type: "select",
+              label: "",
+              dataIndex: "symbol",
+              span: 3,
+              props: {
+                clearable: false,
+              },
+              options: [
+                {
+                  label: "=",
+                  value: "=",
+                },
+                {
+                  label: ">",
+                  value: ">",
+                },
+                {
+                  label: "<",
+                  value: "<",
+                },
+                {
+                  label: "≠",
+                  value: "≠",
+                },
+              ],
+            },
+            {
+              type: "html",
+              span: 2,
+              render: "<div style='text-align:center'>-</div>",
+            },
+            {
+              type: "input",
+              label: "",
+              dataIndex: "percentage",
+              span: 11,
+            },
+          ],
+        },
+        {
           type: "select",
           label: "活动区域",
           dataIndex: "activeArea",
           props: {
-            style: "width: 100%"
+            style: "width: 100%",
           },
           options: [
             {
               label: "区域一",
-              value: "1"
+              value: "1",
             },
             {
               label: "区域二",
-              value: "2"
-            }
-          ]
-        }
+              value: "2",
+            },
+          ],
+        },
       ],
       object: {
         activeName: "电器特惠活动",
         activeArea: "2",
         timelyDelivery: false,
         natureActivities: ["1"],
-        specialResources: "1"
+        specialResources: "1",
       },
       items: [
         {
@@ -68,35 +121,35 @@ export default {
           dataIndex: "activeName",
           rules: [{ required: true, message: "请输入活动名称" }],
           operation: {
-            label: '复制',
-            event: this.copy
+            label: "复制",
+            event: this.copy,
           },
           props: {
-            style: "width: 200px"
-          }
+            style: "width: 200px",
+          },
         },
         {
           type: "select",
           label: "活动区域",
           dataIndex: "activeArea",
           props: {
-            style: "width: 100%"
+            style: "width: 100%",
           },
           options: [
             {
               label: "区域一",
-              value: "1"
+              value: "1",
             },
             {
               label: "区域二",
-              value: "2"
-            }
-          ]
+              value: "2",
+            },
+          ],
         },
         {
           type: "switch",
           label: "即时配送",
-          dataIndex: "timelyDelivery"
+          dataIndex: "timelyDelivery",
         },
         {
           type: "checkbox",
@@ -105,21 +158,21 @@ export default {
           options: [
             {
               label: "美食/餐厅线上活动",
-              value: "1"
+              value: "1",
             },
             {
               label: "地推活动",
-              value: "2"
+              value: "2",
             },
             {
               label: "线下主题活动",
-              value: "3"
+              value: "3",
             },
             {
               label: "单纯品牌曝光",
-              value: "4"
-            }
-          ]
+              value: "4",
+            },
+          ],
         },
         {
           type: "radio",
@@ -128,26 +181,37 @@ export default {
           options: [
             {
               label: "线上品牌商赞助",
-              value: "1"
+              value: "1",
             },
             {
               label: "线下场地免费",
-              value: "2"
-            }
-          ]
-        }
+              value: "2",
+            },
+          ],
+        },
       ],
     };
   },
   methods: {
-    copy (value) {
-      console.log(value.activeName)
+    copy(value) {
+      console.log(value.activeName);
     },
     submitForm() {
       const [from] = this.$refs.baseForm.$children;
-      from.validate(valid => {
+      from.validate((valid) => {
         if (valid) {
           console.log("submit!", this.object);
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+    submitForm2() {
+      const [from] = this.$refs.baseForm2.$children;
+      from.validate((valid) => {
+        if (valid) {
+          console.log("submit!", this.searchObject);
         } else {
           console.log("error submit!!");
           return false;
@@ -158,8 +222,8 @@ export default {
       const [from] = this.$refs.baseForm.$children;
     },
     line() {
-      this.inline = !this.inline
-    }
-  }
+      this.inline = !this.inline;
+    },
+  },
 };
 </script>
