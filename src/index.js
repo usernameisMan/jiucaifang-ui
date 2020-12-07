@@ -16,10 +16,10 @@ const components = [HelloWorld, JcBaseTable, JcBaseForm];
 
 // const components = [HelloWorld, JcBaseTable, JcBaseForm, JcFormDialogDemo];
 
-const version = "0.2.3";
+const version = "0.2.4";
 
 const install = function (Vue, opts = {}) {
-  // 判断是否安装
+  // 判断是否安装  
   if (install.installed) return;
   locale.use(opts.locale);
   locale.i18n(opts.i18n);

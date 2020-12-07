@@ -2,6 +2,7 @@
   <el-table
     :data="dataSource"
     v-bind="{...props}"
+    v-on="{...on}"
     @selection-change="(val)=> $emit('selection-change', val)"
   >
     <el-table-column  v-if="$listeners['selection-change']" type="selection" width="55" />
@@ -39,6 +40,9 @@ export default {
     props: {
       default: () => {}
     },
+    on: {
+      default: () => {}
+    }
   },
   methods: {}
 };

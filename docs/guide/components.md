@@ -9,7 +9,7 @@
 
 ```vue
 <template>
-  <JcBaseTable ref="baseTable" :dataSource="dataSource" :columns="columns" @selection-change="handleSelectionChange" style="width:100%">
+  <JcBaseTable :on="{'row-click': rowClick}" ref="baseTable" :dataSource="dataSource" :columns="columns" @selection-change="handleSelectionChange" style="width:100%">
     <template v-slot:operation="{scope}">
       <el-button size="mini" @click="handleEdit(scope)">编辑</el-button>
     </template>
@@ -94,6 +94,9 @@ export default {
     },
     handleSelectionChange (val) {
       console.log(val)
+    },
+    rowClick (row) {
+      console.log(row)
     },
     getBaseTableRef (item){
       // 暂时通过这种方式获取
