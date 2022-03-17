@@ -29,7 +29,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "markdown-it": "10.0.0",
+    "markdown-it": "12.3.2",
     "core-js": "2.6.4",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
